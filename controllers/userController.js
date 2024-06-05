@@ -34,9 +34,10 @@ const registerUser = (req, res) => {
                nameSuffix: req.body.nameSuffix,
                email: req.body.email,
                mobileNo: req.body.mobileNo,
-               password: bcrypt.hashSync(req.body.password, 10)
+               password: bcrypt.hashSync(req.body.password, 10),
+               financingType: req.body.financingType
           })
-     
+          
           newUser.save()
           .then(newUserRegistered => res.json(newUserRegistered))
           .catch(err => res.status(400).json(err.message));
@@ -59,7 +60,8 @@ const loginUser = (req, res) => {
                const dataPayload = {
                     _id: user._id,
                     email: user.email,
-                    isAdmin: user.isAdmin
+                    isAdmin: user.isAdmin,
+		    financingType: user.financingType
                }
 
                const encodedToken = jwt.sign(dataPayload, process.env.JWT_SECRET);

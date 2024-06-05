@@ -16,6 +16,10 @@ app.use(cors({origin: '*'}));
      const userRoutes = require('./routes/userRoutes.js');
      app.use('/users', userRoutes);
 
+     // videos
+     const videoRoutes = require('./routes/videoRoutes.js');
+     app.use('/videos', videoRoutes);
+
 // mongoDB connection
 mongoose.connect(process.env.MONGODB_URL);
 

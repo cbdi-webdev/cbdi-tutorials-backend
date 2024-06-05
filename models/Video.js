@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-/* const videoSchema = new mongoose.Schema({
+const videoSchema = new mongoose.Schema({
      src: {
           type: String,
           required: true
@@ -10,7 +10,10 @@ const mongoose = require('mongoose');
           type: String,
           required: true
      },
-     description: {
+     category: {
           type: String
      }
-}) */
+});
+
+
+module.exports = mongoose.model("Video", videoSchema);
