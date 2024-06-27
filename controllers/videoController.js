@@ -3,7 +3,7 @@ const Video = require('../models/Video.js');
 
 
 
-const getVideos = (req, res) => {
+/* const getVideos = (req, res) => {
      Video.find({})
      .then(videos => {
           const filteredVideos = videos.filter(video => video.category == req.user.financingType)
@@ -11,8 +11,25 @@ const getVideos = (req, res) => {
           res.json(filteredVideos);
      })  
      .catch(err => res.json(err));
-}
+} */
 
+     const getVideos = (req, res) => {
+          Video.find({})
+            .then(videos => {
+              const filteredVideos = videos.filter(video => {
+                // Check for financing type match first
+                if (video.category === req.user.financingType) {
+                  return true; // Include video if category matches financing type
+                }
+        
+                // Then check for videos with no category
+                return !video.category || video.category === '';
+              });
+        
+              res.json(filteredVideos);
+            })
+            .catch(err => res.json(err));
+        };
 
 const addVideo = (req, res) => {
 
