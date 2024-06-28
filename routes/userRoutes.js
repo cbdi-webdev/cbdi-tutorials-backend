@@ -14,7 +14,7 @@ const {
 } = auth;
 
 
-router.get('/', getAllUsers);
+router.get('/', userAuth, getAllUsers);
 
 router.get('/details', userAuth, getUserDetails);
 
