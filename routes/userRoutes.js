@@ -10,11 +10,12 @@ const {
 } = userController;
 
 const {
-     userAuth
+     userAuth,
+     adminAuth
 } = auth;
 
 
-router.get('/', userAuth, getAllUsers);
+router.get('/', userAuth, adminAuth, getAllUsers);
 
 router.get('/details', userAuth, getUserDetails);
 

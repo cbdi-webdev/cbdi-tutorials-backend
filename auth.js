@@ -19,7 +19,15 @@ const userAuth = (req, res, next) => {
      }
 }
 
+const adminAuth = (req, res, next) => {
+     if(!req.user.isAdmin)
+     return res.status(403).json("Must be an Admin to have access")
+
+     next();
+}
+
 
 module.exports = {
-     userAuth
+     userAuth,
+     adminAuth
 }
